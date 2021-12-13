@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todos/blocs/blocs.dart';
 import 'package:todos/domain/domain.dart';
 import 'package:todos/screens/screens.dart';
-import 'package:todos/todo_app_core/di.dart' as di;
+import 'package:todos/todo_app_core/injector.dart' as di;
 
 import 'todo_app_core/todos_app_core.dart';
 

@@ -24,4 +24,5 @@ Future<void> init() async {
   inject.registerFactory(() => GetTodosUsecase(repository: inject()));
   inject.registerFactory(() => UpdateTodoUsecase(repository: inject()));
   inject.registerFactory(() => RemoveTodoUseCase(repository: inject()));
+  inject.registerFactory(() => FilterTodosUsecase());
 }

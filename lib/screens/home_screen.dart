@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todos/blocs/blocs.dart';
 import 'package:todos/screens/filtered_todos.dart';
+import 'package:todos/todo_app_core/injector.dart';
 import 'package:todos/todo_app_core/todos_app_core.dart';
 import 'package:todos/todo_app_core/visibility_filter.dart';
 
@@ -20,12 +21,15 @@ class _HomeScreenState extends State<HomeScreen> {
     _filterTodosBlocs = [
       FilteredTodosBloc(
         todosBloc: context.read<TodosBloc>(),
+        filterTodosUsecase: inject(),
       )..add(FilterUpdated(VisibilityFilter.all)),
       FilteredTodosBloc(
         todosBloc: context.read<TodosBloc>(),
+        filterTodosUsecase: inject(),
       )..add(FilterUpdated(VisibilityFilter.active)),
       FilteredTodosBloc(
         todosBloc: context.read<TodosBloc>(),
+        filterTodosUsecase: inject(),
       )..add(FilterUpdated(VisibilityFilter.completed)),
     ];
     super.initState();
