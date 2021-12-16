@@ -49,10 +49,14 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
+    
   hive_generator: ^1.1.1
   build_runner: ^2.1.2
   bloc_test: ^9.0.1
-  mockito: ^5.0.15
+  mocktail: ^0.2.0
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

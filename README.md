@@ -1,16 +1,31 @@
-# todos
+# Todos
 
 A Todo application, written in clean architechture, connected to Hive as local database
 
+The project's structure is based on clean architecture, based on this article: 
+https://devmuaz.medium.com/flutter-clean-architecture-series-part-1-d2d4c2e75c47
+
+The state management library used is flutter_bloc, and this project also based on Todo example of Felix Angelov: 
+https://github.com/felangel/Bloc/tree/master/examples/flutter_todos
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+First run the code generator:  
+``` 
+dart run build_runner build 
+```
 
-A few resources to get you started if this is your first Flutter project:
+Then you might run Flutter app:
+``` 
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+To run unit test
+```
+flutter test test/test.dart
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run integration test
+```
+flutter test integration_test/app_test.dart
+```

@@ -1,23 +1,23 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:todos/blocs/todos/todos.dart';
-import 'package:todos/blocs/todos_signal/todos.dart';
 import 'package:todos/domain/domain.dart';
 import 'package:todos/domain/usecases/usecase.dart';
+import 'package:todos/presenter/blocs/todos/todos.dart';
+import 'package:todos/presenter/blocs/todos_signal/todos.dart';
 
 class TodosBloc extends Bloc<TodosEvent, TodosState> {
-  final CreateTodoUseCase createTodoUseCase;
+  final CreateTodoUsecase createTodoUsecase;
   final GetTodosUsecase getTodosUsecase;
   final UpdateTodoUsecase updateTodoUsecase;
-  final RemoveTodoUseCase removeTodoUseCase;
+  final RemoveTodoUsecase removeTodoUsecase;
   final TodoSignalBloc? signalBloc;
 
   TodosBloc(
-    this.createTodoUseCase,
+    this.createTodoUsecase,
     this.getTodosUsecase,
     this.updateTodoUsecase,
-    this.removeTodoUseCase, {
+    this.removeTodoUsecase, {
     this.signalBloc,
   }) : super(TodosLoadInProgress()) {
     on<TodosLoaded>(_onTodosLoaded);
@@ -28,6 +28,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
 
   Future<void> _onTodosLoaded(
       TodosLoaded event, Emitter<TodosState> emit) async {
+    emit(TodosLoadInProgress());
     loadTodos(emit);
   }
 
@@ -37,7 +38,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       if (state is TodosLoadSuccess) {
         oldTodos = (state as TodosLoadSuccess).todos;
       }
-      final newTodo = await createTodoUseCase(params: event.todo);
+      final newTodo = await createTodoUsecase(params: event.todo);
 
       signalBloc?.add(TodoSignalAdded(newTodo));
 
@@ -47,7 +48,9 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       } else {
         await loadTodos(emit);
       }
-    } catch (_) {
+    } catch (e, stackTrace) {
+      print(e);
+      print(stackTrace);
       emit(TodosLoadFailure());
     }
   }
@@ -84,7 +87,7 @@ class TodosBloc extends Bloc<TodosEvent, TodosState> {
       if (state is TodosLoadSuccess) {
         oldTodos = (state as TodosLoadSuccess).todos;
       }
-      await removeTodoUseCase(params: event.todo);
+      await removeTodoUsecase(params: event.todo);
 
       signalBloc?.add(TodoSignalDeleted(event.todo));
 

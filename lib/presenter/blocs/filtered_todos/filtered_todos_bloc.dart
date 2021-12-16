@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:todos/blocs/blocs.dart';
 import 'package:todos/domain/domain.dart';
 import 'package:todos/domain/usecases/usecase.dart';
-import 'package:todos/todo_app_core/visibility_filter.dart';
+import 'package:todos/presenter/blocs/blocs.dart';
+import 'package:todos/presenter/todo_app_core/visibility_filter.dart';
 
 class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
   final TodosBloc todosBloc;

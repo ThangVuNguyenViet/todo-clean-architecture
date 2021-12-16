@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todos/blocs/blocs.dart';
 import 'package:todos/domain/domain.dart';
-import 'package:todos/screens/screens.dart';
-import 'package:todos/todo_app_core/injector.dart' as di;
+import 'package:todos/presenter/blocs/blocs.dart';
+import 'package:todos/presenter/blocs/todos_signal/todos.dart';
+import 'package:todos/presenter/screens/screens.dart';
+import 'package:todos/presenter/todo_app_core/injector.dart' as di;
 
-import 'todo_app_core/todos_app_core.dart';
+import 'presenter/todo_app_core/todos_app_core.dart';
 
-void main() async {
+Future<void> main() async {
   // We can set a Bloc's observer to an instance of `SimpleBlocObserver`.
   // This will allow us to handle all transitions and errors in SimpleBlocObserver.
   await di.init();
@@ -15,16 +16,22 @@ void main() async {
   BlocOverrides.runZoned(() => {}, blocObserver: SimpleBlocObserver());
 
   runApp(
-    BlocProvider(
-      create: (context) {
-        return TodosBloc(
-          di.inject(),
-          di.inject(),
-          di.inject(),
-          di.inject(),
-        )..add(TodosLoaded());
-      },
-      lazy: false,
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => TodoSignalBloc()),
+        BlocProvider(
+          create: (context) {
+            return TodosBloc(
+              di.inject(),
+              di.inject(),
+              di.inject(),
+              di.inject(),
+              signalBloc: context.read(),
+            )..add(TodosLoaded());
+          },
+          lazy: false,
+        ),
+      ],
       child: TodosApp(),
     ),
   );
@@ -42,7 +49,6 @@ class TodosApp extends StatelessWidget {
         },
         TodoAppRoutes.addTodo: (context) {
           return AddEditScreen(
-            key: TodoAppKeys.addTodoScreen,
             onSave: (task, note) {
               BlocProvider.of<TodosBloc>(context).add(
                 TodoAdded(Todo(task: task, note: note)),

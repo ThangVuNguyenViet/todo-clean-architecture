@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todos/domain/domain.dart';
-import 'package:todos/todo_app_core/todos_app_core.dart';
+import 'package:todos/presenter/todo_app_core/todos_app_core.dart';
 
 class TodoItem extends StatelessWidget {
   final DismissDirectionCallback onDismissed;

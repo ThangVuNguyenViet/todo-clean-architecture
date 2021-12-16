@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todos/blocs/blocs.dart';
-import 'package:todos/screens/screens.dart';
-import 'package:todos/widgets/widgets.dart';
+import 'package:todos/presenter/blocs/blocs.dart';
+import 'package:todos/presenter/screens/screens.dart';
+import 'package:todos/presenter/widgets/widgets.dart';
 
 class FilteredTodos extends StatefulWidget {
   FilteredTodos({Key? key}) : super(key: key);
@@ -29,7 +29,6 @@ class _FilteredTodosState extends State<FilteredTodos> {
           if (state is FilteredTodosLoadInProgress) {
             return LoadingIndicator();
           } else if (state is FilteredTodosLoadSuccess) {
-            // return Text(state.activeFilter.toString());
             final todos = state.filteredTodos;
 
             if (todos.isEmpty) {

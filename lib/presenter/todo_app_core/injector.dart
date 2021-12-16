@@ -20,9 +20,9 @@ Future<void> init() async {
   inject.registerLazySingleton<TodosRepository>(
       () => TodosRepositoryImpl(localStorage: inject()));
 
-  inject.registerFactory(() => CreateTodoUseCase(repository: inject()));
+  inject.registerFactory(() => CreateTodoUsecase(repository: inject()));
   inject.registerFactory(() => GetTodosUsecase(repository: inject()));
   inject.registerFactory(() => UpdateTodoUsecase(repository: inject()));
-  inject.registerFactory(() => RemoveTodoUseCase(repository: inject()));
+  inject.registerFactory(() => RemoveTodoUsecase(repository: inject()));
   inject.registerFactory(() => FilterTodosUsecase());
 }

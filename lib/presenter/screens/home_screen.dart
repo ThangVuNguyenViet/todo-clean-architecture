@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:todos/blocs/blocs.dart';
-import 'package:todos/screens/filtered_todos.dart';
-import 'package:todos/todo_app_core/injector.dart';
-import 'package:todos/todo_app_core/todos_app_core.dart';
-import 'package:todos/todo_app_core/visibility_filter.dart';
+import 'package:todos/presenter/blocs/blocs.dart';
+import 'package:todos/presenter/screens/filtered_todos.dart';
+import 'package:todos/presenter/todo_app_core/injector.dart';
+import 'package:todos/presenter/todo_app_core/todos_app_core.dart';
+import 'package:todos/presenter/todo_app_core/visibility_filter.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -54,7 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
         child: FilteredTodos(),
       ),
       floatingActionButton: FloatingActionButton(
-        key: TodoAppKeys.addTodoFab,
         onPressed: () {
           Navigator.pushNamed(context, TodoAppRoutes.addTodo);
         },
@@ -64,10 +63,24 @@ class _HomeScreenState extends State<HomeScreen> {
         currentIndex: _selectedTab,
         onTap: (index) => setState(() => _selectedTab = index),
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.view_list), label: 'All'),
-          BottomNavigationBarItem(icon: Icon(Icons.cancel), label: 'Cancel'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.checklist), label: 'Completed'),
+              icon: Icon(
+                Icons.view_list,
+                key: TodoAppKeys.tab(0),
+              ),
+              label: 'All'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.cancel,
+                key: TodoAppKeys.tab(1),
+              ),
+              label: 'Cancel'),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.checklist,
+                key: TodoAppKeys.tab(2),
+              ),
+              label: 'Completed'),
         ],
       ),
     );
