@@ -39,7 +39,7 @@ class TodoItem extends StatelessWidget {
             child: Text(
               todo.task,
               key: TodoAppKeys.todoItemTask(todoId),
-              style: Theme.of(context).textTheme.headline6,
+              style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
         ),
@@ -49,7 +49,7 @@ class TodoItem extends StatelessWidget {
                 key: TodoAppKeys.todoItemNote(todoId),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.subtitle1,
+                style: Theme.of(context).textTheme.titleMedium,
               )
             : null,
       ),

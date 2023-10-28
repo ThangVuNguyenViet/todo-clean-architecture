@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todos/domain/domain.dart';
 import 'package:todos/presenter/blocs/todos_signal/todos.dart';
-import 'package:todos/presenter/blocs/todos_signal/todos_signal_bloc.dart';
 import 'package:todos/presenter/todo_app_core/todos_app_core.dart';
 
 typedef OnSaveCallback = Function(String task, String note);
@@ -55,7 +54,7 @@ class _AddEditScreenState extends State<AddEditScreen> {
                   initialValue: isEditing ? widget.todo?.task : '',
                   key: TodoAppKeys.taskField,
                   autofocus: !isEditing,
-                  style: textTheme.headline5,
+                  style: textTheme.headlineSmall,
                   decoration: InputDecoration(
                     hintText: 'New Todo',
                   ),
@@ -70,7 +69,7 @@ class _AddEditScreenState extends State<AddEditScreen> {
                   initialValue: isEditing ? widget.todo?.note : '',
                   key: TodoAppKeys.noteField,
                   maxLines: 10,
-                  style: textTheme.subtitle1,
+                  style: textTheme.titleMedium,
                   decoration: InputDecoration(
                     hintText: 'Note',
                   ),

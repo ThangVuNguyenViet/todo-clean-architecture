@@ -1,5 +1,4 @@
 import 'package:todos/domain/domain.dart';
-import 'package:todos/domain/usecases/abstract_usecase.dart';
 import 'package:todos/presenter/todo_app_core/visibility_filter.dart';
 
 class FilterTodosUsecase extends Usecase<List<Todo>, FilterTodosUsecaseParams> {

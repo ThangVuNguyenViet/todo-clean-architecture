@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todos/data/models/todo_model.dart';
 import 'package:todos/domain/domain.dart';

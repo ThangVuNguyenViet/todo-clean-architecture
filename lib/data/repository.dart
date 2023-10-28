@@ -1,9 +1,7 @@
-import 'dart:async';
 import 'dart:core';
 
 import 'package:todos/data/models/todo_model.dart';
 import 'package:todos/domain/domain.dart';
-import 'package:todos/domain/repositories/todos_repository.dart';
 import 'package:uuid/uuid.dart';
 
 import 'data_sources/local/local_storage.dart';
